@@ -21,7 +21,7 @@ import org.springframework.context.ApplicationContext;
 import static java.util.Arrays.asList;
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.Format.CONSOLE;
-import static org.jbehave.web.selenium.WebDriverHtmlOutput.WEB_DRIVER_HTML;
+import static org.jbehave.core.reporters.Format.XML;
 
 public class EtsyDotComStories extends JUnitStories {
     
@@ -34,7 +34,7 @@ public class EtsyDotComStories extends JUnitStories {
     ApplicationContext context = new SpringApplicationContextFactory("etsy-steps.xml").createApplicationContext();
     private Format screenshootingFormat =
             new ScreenshootingHtmlFormat((WebDriverProvider) context.getBean("driverProvider"));
-    Format[] formats = new Format[] { new SeleniumContextOutput(seleniumContext), CONSOLE, screenshootingFormat };
+    Format[] formats = new Format[] {XML, new SeleniumContextOutput(seleniumContext), CONSOLE, screenshootingFormat };
     StoryReporterBuilder reporterBuilder = new StoryReporterBuilder()
             .withCodeLocation(codeLocationFromClass(EtsyDotComStories.class)).withFailureTrace(true)
             .withFailureTraceCompression(true).withDefaultFormats().withFormats(formats)
