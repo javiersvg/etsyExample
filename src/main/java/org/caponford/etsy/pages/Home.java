@@ -3,10 +3,8 @@ package org.caponford.etsy.pages;
 import org.jbehave.web.selenium.FluentWebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
 
-import static org.openqa.selenium.By.className;
-import static org.openqa.selenium.By.id;
-import static org.openqa.selenium.By.linkText;
-import static org.openqa.selenium.By.xpath;
+import static org.openqa.selenium.By.*;
+import static org.seleniumhq.selenium.fluent.Period.secs;
 
 public class Home extends FluentWebDriverPage {
 
@@ -24,14 +22,15 @@ public class Home extends FluentWebDriverPage {
     }
 
     public void search(String thing) {
-//        within(secs(100)).title().shouldBe("kittens");
-        div(id("search-facet")).click();
-        li(className("all")).click();
-        input(id("search-query")).sendKeys(thing);
-        button(id("search_submit")).click();
+        input(id("autocomplete-field")).sendKeys(thing);
+        button(name("search_submit")).click();
     }
 
     public void goToBuySection() {
         link(linkText("Buy")).click();
+    }
+
+    public int cartSize() {
+        return Integer.parseInt(within(secs(2)).div(id("cart_ref-count")).getText().toString());
     }
 }

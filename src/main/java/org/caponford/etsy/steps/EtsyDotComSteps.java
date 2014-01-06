@@ -65,7 +65,7 @@ public class EtsyDotComSteps {
 
     @Then("the cart will be empty")
     public void cartIsEmpty() {
-        assertThat(site.cartSize(), equalTo(0));
+        assertThat(home.cartSize(), equalTo(0));
     }
 
     @Then("the cart contents is empty")
@@ -92,24 +92,14 @@ public class EtsyDotComSteps {
     }
 
     @When("I want to browse through a treasury gallery")
-    @Composite(steps = { "When I want to buy something from etsy.com", "When I want to browse the treasury",
-            "When I choose the first treasury gallery" })
+    @Composite(steps = { "WWhen I specify the Art sub category",
+            "When I choose the Abtracts Paintings gallery" })
     public void browseToFirstTreasuryGallery() {
     }
 
-    @When("I want to buy something from etsy.com")
-    public void selectBuyTabAtTop() {
-        home.goToBuySection();
-    }
-
-    @When("I want to browse the treasury")
-    public void browseTreasury() {
-        buy.selectTreasury();
-    }
-
-    @When("I choose the first treasury gallery")
+    @When("I choose the Abtracts Paintings gallery")
     public void selectFirstTreasuryGallery() {
-        treasury.chooseFirstGallery();
+        treasury.chooseAbtractsPaintingsGallery();
     }
 
     @When("a $thing is placed in the cart")

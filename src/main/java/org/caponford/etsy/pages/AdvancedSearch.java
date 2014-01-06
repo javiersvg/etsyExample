@@ -3,9 +3,7 @@ package org.caponford.etsy.pages;
 import org.jbehave.web.selenium.FluentWebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
 
-import static org.openqa.selenium.By.className;
-import static org.openqa.selenium.By.id;
-import static org.openqa.selenium.By.xpath;
+import static org.openqa.selenium.By.*;
 
 public class AdvancedSearch extends FluentWebDriverPage {
 
@@ -28,11 +26,11 @@ public class AdvancedSearch extends FluentWebDriverPage {
     }
 
     public void subCategory(String subCategory) {
-        select(className("handmade")).selectByValue(subCategory.toLowerCase());
+        link(linkText(subCategory)).click();
     }
 
     public void searchFor(String thing) {
-        input(id("search_query")).sendKeys(thing).submit();
+        input(id("search-query")).sendKeys(thing).submit();
     }
     
 }
