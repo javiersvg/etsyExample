@@ -2,13 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
     <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities" factory-method="firefox"/>
-
-    <bean id="driverProvider" class="org.jbehave.web.selenium.SauceWebDriverProvider">
-        <constructor-arg ref="desiredCapabilities"/>
-    </bean>
 
     <bean id="webDriverProvider" class="org.jbehave.web.selenium.PerStoryWebDriverSteps">
         <constructor-arg ref="driverProvider"/>
@@ -30,5 +26,9 @@
         <constructor-arg ref="pageFactory"/>
     </bean>
 
-
+    <beans profile="sauceWebDriver" >
+      <bean id="driverProvider" class="org.jbehave.web.selenium.SauceWebDriverProvider">
+        <constructor-arg ref="desiredCapabilities"/>
+      </bean>
+    </beans>
 </beans>

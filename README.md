@@ -8,17 +8,17 @@ This tutorial uses JBehave 3.x and Selenium 2.x to test [Etsy.com](http://etsy.c
 
 This will run the build and (after a minute or so) Firefox will open and test the etsy.com website:
 
-    mvn clean install 
+    mvn clean integration-test -Dspring.profiles.active=<profile> 
 
 You should see Firefox (installed on your system) flicker as it tests Etsy.com
 
 This will run a single story (one contained in a etsy_cart.story file):
 
-    mvn clean install -DstoryFilter=etsy_cart
+    mvn clean integration-test -Dspring.profiles.active=<profile>  -DstoryFilter=etsy_cart
 
 This will run a suite based on the meta filters in the three story files:
 
-    mvn clean install -Dmeta.filter="+color red"
+    mvn clean integration-test -Dspring.profiles.active=<profile> -Dmeta.filter="+color red"
 
 ## Viewing the results
 
