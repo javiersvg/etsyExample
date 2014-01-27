@@ -8,21 +8,30 @@ This tutorial uses JBehave 3.x and Selenium 2.x to test [Etsy.com](http://etsy.c
 
 This will run the build and (after a minute or so) Firefox will open and test the etsy.com website:
 
-    mvn clean integration-test -Dspring.profiles.active=<profile> 
+    mvn clean integration-test -Dspring.profiles.active=localWebDriver
 
 You should see Firefox (installed on your system) flicker as it tests Etsy.com
 
 This will run a single story (one contained in a etsy_cart.story file):
 
-    mvn clean integration-test -Dspring.profiles.active=<profile>  -DstoryFilter=etsy_cart
+    mvn clean install -DstoryFilter=etsy_cart -Dspring.profiles.active=localWebDriver
 
 This will run a suite based on the meta filters in the three story files:
 
-    mvn clean integration-test -Dspring.profiles.active=<profile> -Dmeta.filter="+color red"
+    mvn clean install -Dmeta.filter="+color red" -Dspring.profiles.active=localWebDriver
 
 ## Viewing the results
 
 In directory target/jbehave/view, a page named 'reports.html' has been generated, which you open that in any browser to the stories that have run and their execution status.
+
+This project counts with several WebDriver implementations to run over diferent architectures
+
+   To run the tests locally run with
+    -Dspring.profiles.active=localWebDriver
+   To run the test on SauceLabs add the following
+    -Dspring.profiles.active=sauceWebDriver -DSAUCE_USERNAME=<your username>
+    -DSAUCE_ACCESS_KEY=<your sauce labs access key>
+   To run against your own grid configuration
 
 There should be a row for each story.  The story reports are clickable to via links on the right-most column.
 

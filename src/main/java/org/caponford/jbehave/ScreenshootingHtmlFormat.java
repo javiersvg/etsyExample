@@ -1,17 +1,17 @@
-package org.caponford.etsy.jbehave;
+package org.caponford.jbehave;
 
 import org.jbehave.core.reporters.FilePrintStreamFactory;
 import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporter;
 import org.jbehave.core.reporters.StoryReporterBuilder;
-import org.jbehave.web.selenium.WebDriverProvider;
+import org.springframework.context.ApplicationContext;
 
 public class ScreenshootingHtmlFormat extends Format {
-    private WebDriverProvider webDriverProvider;
+    private ApplicationContext context;
 
-    public ScreenshootingHtmlFormat(WebDriverProvider webDriverProvider) {
+    public ScreenshootingHtmlFormat(ApplicationContext context) {
         super("HTML");
-        this.webDriverProvider = webDriverProvider;
+        this.context = context;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class ScreenshootingHtmlFormat extends Format {
         factory.useConfiguration(
                 builder.fileConfiguration("html"));
         return new ScreenshootingHtmlOutput(factory.createPrintStream(),
-                builder, webDriverProvider)
+                builder, context)
                 .doReportFailureTrace(builder.reportFailureTrace())
                 .doCompressFailureTrace(builder.compressFailureTrace());
     }

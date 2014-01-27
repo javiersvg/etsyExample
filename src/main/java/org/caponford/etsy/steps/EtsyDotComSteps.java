@@ -92,7 +92,7 @@ public class EtsyDotComSteps {
     }
 
     @When("I want to browse through a treasury gallery")
-    @Composite(steps = { "WWhen I specify the Art sub category",
+    @Composite(steps = { "When I specify the Art sub category",
             "When I choose the Abtracts Paintings gallery" })
     public void browseToFirstTreasuryGallery() {
     }

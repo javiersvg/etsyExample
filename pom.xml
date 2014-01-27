@@ -16,7 +16,7 @@
     <ignore.failures>true</ignore.failures>
     <threads>1</threads>
     <skip>false</skip>
-    <stories>**/EtsyDotComStories.java</stories>
+    <stories>**/RenmanDotComStories.java</stories>
   </properties>
 
   <dependencyManagement>

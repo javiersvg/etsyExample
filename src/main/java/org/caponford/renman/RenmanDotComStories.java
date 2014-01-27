@@ -1,4 +1,4 @@
-package org.caponford.etsy;
+package org.caponford.renman;
 
 import org.caponford.jbehave.ScreenshootingHtmlFormat;
 import org.jbehave.core.configuration.Configuration;
@@ -23,7 +23,7 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.Format.CONSOLE;
 import static org.jbehave.core.reporters.Format.XML;
 
-public class EtsyDotComStories extends JUnitStories {
+public class RenmanDotComStories extends JUnitStories {
     
     CrossReference crossReference = new CrossReference().withJsonOnly().withOutputAfterEachStory(true)
             .excludingStoriesWithNoExecutedScenarios(true);
@@ -31,12 +31,12 @@ public class EtsyDotComStories extends JUnitStories {
     SeleniumContext seleniumContext = new SeleniumContext();
     SeleniumStepMonitor stepMonitor = new SeleniumStepMonitor(contextView, seleniumContext,
             crossReference.getStepMonitor());
-    ApplicationContext context = new SpringApplicationContextFactory("etsy-steps.xml").createApplicationContext();
+    ApplicationContext context = new SpringApplicationContextFactory("renman-steps.xml").createApplicationContext();
     private Format screenshootingFormat =
             new ScreenshootingHtmlFormat(context);
     Format[] formats = new Format[] {XML, new SeleniumContextOutput(seleniumContext), CONSOLE, screenshootingFormat };
     StoryReporterBuilder reporterBuilder = new StoryReporterBuilder()
-            .withCodeLocation(codeLocationFromClass(EtsyDotComStories.class)).withFailureTrace(true)
+            .withCodeLocation(codeLocationFromClass(RenmanDotComStories.class)).withFailureTrace(true)
             .withFailureTraceCompression(true).withDefaultFormats().withFormats(formats)
             .withCrossReference(crossReference);
 
@@ -45,7 +45,7 @@ public class EtsyDotComStories extends JUnitStories {
         return new SeleniumConfiguration().useSeleniumContext(seleniumContext)
                 .useFailureStrategy(new FailingUponPendingStep())
                 .useStoryControls(new StoryControls().doResetStateBeforeScenario(false)).useStepMonitor(stepMonitor)
-                .useStoryLoader(new LoadFromClasspath(EtsyDotComStories.class))
+                .useStoryLoader(new LoadFromClasspath(RenmanDotComStories.class))
                 .useStoryReporterBuilder(reporterBuilder);
     }
 
@@ -57,7 +57,7 @@ public class EtsyDotComStories extends JUnitStories {
 
     @Override
     protected List<String> storyPaths() {
-        return new StoryFinder().findPaths(codeLocationFromClass(this.getClass()).getFile(), asList("**/" + System.getProperty("storyFilter", "etsy*")
+        return new StoryFinder().findPaths(codeLocationFromClass(this.getClass()).getFile(), asList("**/" + System.getProperty("storyFilter", "renman*")
                 + ".story"), null);
     }
 

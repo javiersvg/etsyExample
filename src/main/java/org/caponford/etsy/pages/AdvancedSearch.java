@@ -26,7 +26,7 @@ public class AdvancedSearch extends FluentWebDriverPage {
     }
 
     public void subCategory(String subCategory) {
-        link(linkText(subCategory)).click();
+        div(className("browse-navigation")).link(partialLinkText(subCategory)).click();
     }
 
     public void searchFor(String thing) {

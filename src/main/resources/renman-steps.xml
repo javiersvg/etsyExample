@@ -10,19 +10,15 @@
         <constructor-arg ref="driverProvider"/>
     </bean>
 
-    <bean id="lifecycleSteps" class="org.caponford.etsy.steps.LifecycleSteps">
+    <bean id="pageFactory" class="org.caponford.renman.pages.PageFactory">
         <constructor-arg ref="driverProvider"/>
     </bean>
 
-    <bean id="journaledSteps" class="org.caponford.etsy.steps.JournaledStoriesSteps">
-        <constructor-arg ref="driverProvider"/>
+    <bean id="homeNavigationSteps" class="org.caponford.renman.steps.NavigationSteps">
+        <constructor-arg ref="pageFactory"/>
     </bean>
 
-    <bean id="pageFactory" class="org.caponford.etsy.pages.PageFactory">
-        <constructor-arg ref="driverProvider"/>
-    </bean>
-
-    <bean id="etsySteps" class="org.caponford.etsy.steps.EtsyDotComSteps">
+    <bean id="registrationSteps" class="org.caponford.renman.steps.RegistrationSteps">
         <constructor-arg ref="pageFactory"/>
     </bean>
 
@@ -42,5 +38,4 @@
         <bean id="driverProvider" class="org.jbehave.web.selenium.FirefoxWebDriverProvider">
         </bean>
     </beans>
-
 </beans>
